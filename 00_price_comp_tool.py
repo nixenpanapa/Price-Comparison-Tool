@@ -63,5 +63,9 @@ while True:
     if budget < 75:
         print("Sorry you dont have enough money for any of our products")
 
-    if budget > 75:
-        print("program continues")
+    if budget >5000:
+        print("Sorry that is too much for our store please enter a lower amount"
+              "\n(within $5000) ")
+
+    else:
+        print("Here are some sneakers within your price range")
