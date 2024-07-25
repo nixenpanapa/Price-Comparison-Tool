@@ -58,14 +58,22 @@ while True:
               "\nshow list of products within that set budget. For each product there will be a"
               "\nexplanation on why that product is value for money")
 
-    budget = num_check("What is your budget for today? ")
+    budget = num_check("What is your budget for today? $")
 
     if budget < 75:
         print("Sorry you dont have enough money for any of our products")
 
-    if budget >5000:
+    if budget > 5000:
         print("Sorry that is too much for our store please enter a lower amount"
               "\n(within $5000) ")
 
-    else:
-        print("Here are some sneakers within your price range")
+    budget = num_check("What is your budget today? $")
+
+    if budget < 75:
+        print("Sorry you dont have enough money for any of our products")
+
+
+
+
+
+
