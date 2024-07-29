@@ -14,11 +14,20 @@ def yes_no(question):
 
 # function to check if the user had input a valid integer
 
-def num_check(question):
+def num_check(question, low, high):
+
+    error = f"Enter the number between {low} and {high}"
+
     while True:
         try:
             response = int(input(question))
-            return response
+
+            if response >= low and response < high:
+                return response
+
+            else:
+                print(error)
+
         except ValueError:
             print("Please enter an integer.")
 
@@ -48,29 +57,49 @@ def string_checker(question, num_letters, valid_responses):
 
 yes_no_list = ["yes", "no"]
 
-while True:
-    want_instructions = yes_no("Do you want to know how the price comparison tool functions? ")
+# List of sneakers and their prices
 
-    if want_instructions == "yes":
-        print("This price comparison tool is available to help users to make informed"
-              "\ndecisions by comparing the cost effectiveness of various different sneakers"
-              "\nThis tool allows the user to set the specific budget they have available and"
-              "\nshow list of products within that set budget. For each product there will be a"
-              "\nexplanation on why that product is value for money")
+sneakers = {
+    "\nAlexander McQueen Oversized Sneaker": 550,
+    "\nBalenciaga Triple S": 900,
+    "\nNike Blazer Mid '77": 100,
+    "\nSacai x Nike LDWaffle": 580,
+    "\nCrocs": 75,
+    "\nBirkenstock Boston": 200,
+    "\nNike Air Max 90": 120,
+    "\nJordan 4 Retro": 350,
+    "\nDior Jordan 1 Low": 5000,
+    "\nNike SB Dunk Ben & Jerry's": 1100,
+}
 
-    budget = num_check("What is your budget for today? $")
+want_instructions = yes_no("Do you want to know how the price comparison tool functions? (y/n): ")
 
-    if budget < 75:
-        print("Sorry you dont have enough money for any of our products")
+if want_instructions == "yes":
+    print("\nThis price comparison tool is available to help users to make informed"
+            "\ndecisions by comparing the cost effectiveness of various different sneakers"
+            "\nThis tool allows the user to set the specific budget they have available and"
+            "\nshow list of products within that set budget. For each product there will be a"
+            "\nexplanation on why that product is value for money")
 
-    if budget > 5000:
-        print("Sorry that is too much for our store please enter a lower amount"
-              "\n(within $5000) ")
+budget = num_check("\nWhat is your budget for today? $", 50, 5000)
 
-    budget = num_check("What is your budget today? $")
+while budget <= 5000:
 
-    if budget < 75:
-        print("Sorry you dont have enough money for any of our products")
+    if budget < 49:
+        print("\nSorry you dont have a high enough budget for any of our products. ")
+        increase_budget = string_checker("\nWould you like to increase your budget? (y/n): ", 1, yes_no_list)
+
+
+        if increase_budget == "yes":
+            budget = num_check("\nWhat is your budget for today? $", 50, 5000)
+        else:
+            break
+
+    else:
+        print("\nHere are the sneakers within yor budget.")
+
+print("See ya")
+
 
 
 
