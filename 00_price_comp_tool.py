@@ -60,17 +60,18 @@ yes_no_list = ["yes", "no"]
 # List of sneakers and their prices
 
 sneakers = {
-    "\nAlexander McQueen Oversized Sneaker": 550,
-    "\nBalenciaga Triple S": 900,
-    "\nNike Blazer Mid '77": 100,
-    "\nSacai x Nike LDWaffle": 580,
-    "\nCrocs": 75,
-    "\nBirkenstock Boston": 200,
-    "\nNike Air Max 90": 120,
-    "\nJordan 4 Retro": 350,
-    "\nDior Jordan 1 Low": 5000,
-    "\nNike SB Dunk Ben & Jerry's": 1100,
+    "Alexander McQueen Oversized Sneaker": 550,
+    "Balenciaga Triple S": 900,
+    "Nike Blazer Mid '77": 100,
+    "Sacai x Nike LDWaffle": 580,
+    "Crocs": 75,
+    "Birkenstock Boston": 200,
+    "Nike Air Max 90": 120,
+    "Jordan 4 Retro": 350,
+    "Dior Jordan 1 Low": 5000,
+    "Nike SB Dunk Ben & Jerry's": 1100,
 }
+
 
 want_instructions = yes_no("Do you want to know how the price comparison tool functions? (y/n): ")
 
@@ -80,25 +81,25 @@ if want_instructions == "yes":
             "\nThis tool allows the user to set the specific budget they have available and"
             "\nshow list of products within that set budget. For each product there will be a"
             "\nexplanation on why that product is value for money")
+    print()
 
 budget = num_check("\nWhat is your budget for today? $", 50, 5000)
 
-while budget <= 5000:
+# Print the available sneakers within the budget
+print("\nHere are the sneakers you can afford with your budget:")
+affordable_sneakers = {name: price for name, price in sneakers.items() if price <= budget}
 
-    if budget < 49:
-        print("\nSorry you dont have a high enough budget for any of our products. ")
-        increase_budget = string_checker("\nWould you like to increase your budget? (y/n): ", 1, yes_no_list)
+if affordable_sneakers:
+    for name, price in affordable_sneakers.items():
+        print(f"{name}: ${price}")
+else:
+    print("Sorry, no sneakers are available within your budget.")
 
 
-        if increase_budget == "yes":
-            budget = num_check("\nWhat is your budget for today? $", 50, 5000)
-        else:
-            break
 
-    else:
-        print("\nHere are the sneakers within yor budget.")
 
-print("See ya")
+
+
 
 
 
